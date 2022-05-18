@@ -55,20 +55,3 @@
     color: black;    
 
 }
-.dropdown {
-    width: 20%;
-    margin: 5px;
-}
-
-.btn-reset {
-    background-color: darkolivegreen;
-    color: black;
-}
-
-.btn-active {
-    background-color: #808c4a;
-}
-.btn-inactive{
-    background-color: #445f61;
-    color: black;
-}

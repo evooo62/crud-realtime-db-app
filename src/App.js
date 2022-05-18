@@ -7,6 +7,7 @@ import AddEdit from './pages/AddEdit/AddEdit';
 import Home from './pages/Home/Home';
 import View from './pages/View/View';
 import About from './pages/About/About';
+import Search from './pages/Search/Search';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
          <Route path="/update/:id" element={<AddEdit/>}/>
          <Route path="/view/:id" element={<View/>}/>
          <Route path="/about" element={<About/>}/>
+         <Route path="/search" element={<Search/>}/>
        </Routes>
     </div>
     </BrowserRouter>

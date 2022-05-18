@@ -14,6 +14,15 @@
         border-radius: 4px;
     }
 
+    .inputField {
+        width: 40% !important;
+        padding: 1px;
+        margin-top: 5px;
+        margin-right: 6px;
+        border: none;
+        font-size: 17px;
+    }
+
     .header p.logo{
         font-size: 25px;
         font-weight: bold;

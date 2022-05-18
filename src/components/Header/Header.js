@@ -1,45 +1,70 @@
 import "./Header.css";
 
-import React, { useEffect, useState } from 'react'
-import { Link, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const [activeTab, setActiveTab] = useState("Home");
+  const location = useLocation();
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
- const [activeTab, setActiveTab] = useState("Home");
- const location = useLocation();
-
- useEffect(()=>{
-    if(location.pathname === "/"){
-        setActiveTab("Home");
-    } else if(location.pathname === "/add"){
-        setActiveTab("AddContact");
-    } else if(location.pathname === "/about"){
-        setActiveTab("About");
+  useEffect(() => {
+    if (location.pathname === "/") {
+      setActiveTab("Home");
+    } else if (location.pathname === "/add") {
+      setActiveTab("AddContact");
+    } else if (location.pathname === "/about") {
+      setActiveTab("About");
     }
- },[location]);
+  }, [location]);
+
+  const handleSubmit = (e) =>{
+      e.preventDefault();
+      navigate(`/search?name=${search}`);
+      setSearch("");
+  }
 
   return (
     <div className="header">
-        <p className="logo">Contact App</p>
-        <div className="header-right">
-            <Link to="/">
-                <p className={`${activeTab==="Home" ? "active" : ""}`} onClick={()=>setActiveTab("Home")}>
-                    Home
-                </p>
-            </Link>
-            <Link to="/add">
-                <p className={`${activeTab==="AddContact" ? "active" : ""}`} onClick={()=>setActiveTab("AddContact")}>
-                    AddContact
-                </p>
-            </Link>
-            <Link to="/about">
-                <p className={`${activeTab==="About" ? "active" : ""}`} onClick={()=>setActiveTab("About")}>
-                    About
-                </p>
-            </Link>
-        </div>
+      <p className="logo">Contact App</p>
+      <div className="header-right">
+        <form onSubmit={handleSubmit} style={{display:"inline"}}>
+          <input
+            type="text"
+            className="inputField"
+            placeholder="Search Name ..."
+            onChange={(e) => setSearch(e.target.value)}
+            value={search}
+          />
+        </form>
+        <Link to="/">
+          <p
+            className={`${activeTab === "Home" ? "active" : ""}`}
+            onClick={() => setActiveTab("Home")}
+          >
+            Home
+          </p>
+        </Link>
+        <Link to="/add">
+          <p
+            className={`${activeTab === "AddContact" ? "active" : ""}`}
+            onClick={() => setActiveTab("AddContact")}
+          >
+            AddContact
+          </p>
+        </Link>
+        <Link to="/about">
+          <p
+            className={`${activeTab === "About" ? "active" : ""}`}
+            onClick={() => setActiveTab("About")}
+          >
+            About
+          </p>
+        </Link>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

@@ -8,7 +8,8 @@ import { toast } from 'react-toastify'
 const initialState={
   name:"",
   email:"",
-  contact:""
+  contact:"",
+  status:""
 }
 
 
@@ -16,7 +17,7 @@ const AddEdit = () => {
   const [state, setState] = useState(initialState);
   const [data, setData] = useState({});
 
-  const {name,email,contact}=state;
+  const {name,email,contact,status}=state;
 
   const navigate = useNavigate();
   const {id} =useParams();
@@ -51,7 +52,7 @@ const AddEdit = () => {
   };
   const handleSubmit =(e) =>{
     e.preventDefault();
-    if(!name || !email || !contact){
+    if(!name || !email || !contact ||!status){
       toast.error("Please provide value in each input field")
     } else {
       if(!id){
@@ -114,6 +115,16 @@ const AddEdit = () => {
         name="contact"
         placeHolder='Your Contact No. ...'
         value={contact || ""}
+        onChange={handleInputChange}
+        />
+
+        <label htmlFor='name'>Status</label>
+        <input
+        type="text"
+        id="status"
+        name="status"
+        placeHolder='Your Status...'
+        value={status || "" }
         onChange={handleInputChange}
         />
         
